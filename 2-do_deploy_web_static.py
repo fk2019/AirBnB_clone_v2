@@ -15,14 +15,15 @@ def do_deploy(archive_path):
         return False
     target = "/data/web_static/releases/"
     filename = archive_path.split('.')[0].split('/')[1]
+    archive = archive_path.split('versions/')[1]
     dest_path = target + filename
     try:
         put(archive_path, '/tmp')
         run('mkdir -p {}'.format(dest_path))
-        run('tar -xcvf /tmp/{}.tgz -C {}'.format(filename, dest_path))
-        run('rm -f /tmp/{}.tgz'.format(filename))
-        run('mv {}/web_static/* {}/'.format(dest_apth, dest_path))
-        run('rm -rf {}/web_static'.format(dest_path))
+        run('tar -xvf /tmp/{} -C {}'.format(archive, dest_path))
+        run('rm -f /tmp/{}.tgz'.format(archive))
+        run('mv data/web_static/releases/{}/web_static/* {}/'.format(filename, dest_path))
+        run('rm -rf data/web_static/releases/{}/web_static'.format(filename))
         run('rm -rf /data/web_static/current')
         run('ln -s {} /data/web_static/current'.format(dest_path))
         return True
