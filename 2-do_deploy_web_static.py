@@ -19,13 +19,13 @@ def do_deploy(archive_path):
     dest_path = target + filename
     try:
         put(archive_path, '/tmp')
-        run('mkdir -p {}'.format(dest_path))
-        run('tar -xvf /tmp/{} -C {}'.format(archive, dest_path))
-        run('rm -f /tmp/{}.tgz'.format(archive))
-        run('mv data/web_static/releases/{}/web_static/* {}/'.format(filename, dest_path))
-        run('rm -rf data/web_static/releases/{}/web_static'.format(filename))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {} /data/web_static/current'.format(dest_path))
+        run('sudo mkdir -p {}'.format(dest_path))
+        run('sudo tar -xvf /tmp/{} -C {}/'.format(archive, dest_path))
+        run('sudo rm -f /tmp/{}.tgz'.format(archive))
+        run('sudo mv /data/web_static/releases/{}/web_static/* {}/'.format(filename, dest_path))
+        run('sudo rm -rf /data/web_static/releases/{}/web_static'.format(filename))
+        run('sudo rm -rf /data/web_static/current')
+        run('sudo ln -s {} /data/web_static/current'.format(dest_path))
         return True
     except Exception:
         return False
