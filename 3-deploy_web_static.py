@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Distribute an archive to web servers
+"""Generate .tgz archive from web_static contents
 """
-from fabric.api import env, run, put, local
-import os
+from fabric.api import local, env, run, put
+from datetime import datetime
 
 env.hosts = ['34.232.69.25', '18.233.67.224']
 
@@ -43,3 +43,11 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
+
+def deploy():
+    """Create and distribute an archive to web servers
+"""
+    path = do_pack()
+    result = do_deploy(path)
+    return result
