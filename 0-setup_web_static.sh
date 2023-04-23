@@ -13,7 +13,6 @@ echo "<html>
      </html>" > /data/web_static/releases/test/index.html
 ln -s /data/web_static/releases/tests/ /data/web_static/current
 chown -R ubuntu:ubuntu /data
-location="\\\tlocation /hbnb_static {\\n\t\talias /data/web_static/current/;\n\t}\n"
 file="/etc/nginx/sites-available/default"
-sed -i "/server_name _;/a $location" "$file"
+sed -i '/server_name _;/a \\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n' "$file"
 service nginx restart
