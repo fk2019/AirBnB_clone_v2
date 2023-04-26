@@ -9,8 +9,8 @@ def do_pack():
     """Create versions folder and return archive path
     """
     local("mkdir -p versions")
-    path = local("tar -cvzf versions/web_static_{}.tgz web_static".
-                 format(datetime.now().strftime("%Y%m%d%H%M%S")), capture=True)
+    date = datetime.now().strftime("%Y%m%d%H%M%S")
+    path = local("tar -cvzf versions/web_static_{}.tgz web_static".format(date))
     if path:
         return path
     else:

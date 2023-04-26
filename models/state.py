@@ -19,11 +19,12 @@ else:
     class State(BaseModel):
         @property
         def cities(self):
-            """Return list of City isntances with state.id=State.id"""
+            """Return list of City instances with state.id=State.id"""
             cities = []
             all_list = models.storage.all(City)
+            print("All {}".format(all_list))
             for key, value in all_list.items():
+                print("val {}".format(value))
                 if value.state.id == self.id:
-                    city.append(value)
+                    cities.append(value)
             return cities
-#    name = ""
