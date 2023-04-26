@@ -18,12 +18,9 @@ host = getenv("HBNB_MYSQL_HOST")
 pwd = getenv("HBNB_MYSQL_PWD")
 env = getenv("HBNB_ENV")
 
-classes = {"City": City, "Place": Place, "Review": Review,
-           "User": User, "State": State, "Amenity": Amenity}
-
 
 class DBStorage():
-    """DBStorage class linkes with MySQL database
+    """DBStorage class links with MySQL database
     """
     __engine = None
     __session = None
@@ -33,14 +30,14 @@ class DBStorage():
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format
                                       (user, pwd, host, database),
                                       pool_pre_ping=True)
-
         if env == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """Query current db session all objects depending on cls"""
         db_objs = {}
-        classes = ["City", "Place", "Review", "User", "State", "Amenity"]
+        classes = ["City", "Place", "Review", "User", "State", "Ame\
+    nity"]
         if cls is None:
             for el in classes:
                 query = self.__session.query(el)
@@ -66,7 +63,7 @@ class DBStorage():
         self.__session.commit()
 
     def delete(self, obj=None):
-        """Delete from currrent db session obj if not None"""
+        """Delete from current db session obj if not None"""
         if obj:
             self.__session.delete(obj)
 
@@ -79,7 +76,3 @@ class DBStorage():
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
-
-    def close(self):
-        """Terminate current db session"""
-        self.__session.close()

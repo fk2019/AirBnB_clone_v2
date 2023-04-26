@@ -17,8 +17,7 @@ class FileStorage:
                 if cls == key.split('.')[0]:
                     objs[key] = value
             return objs
-        else:
-            return FileStorage.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -58,8 +57,8 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """Delete object passed """
-        if obj is not None:
-            obj_key = "{}.{}".format(type(obj).__name__, obj.id)
-            del FileStorage.__objects[obj_key]
-        self.save()
+        """Delete obj from __objects"""
+        if obj:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            del self.__objects[key]
+            self.save()
