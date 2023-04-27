@@ -222,7 +222,7 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print_list.append(str(v))
         else:
-            for k, v in storage.all(HBNBCommand.classes[args]).items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
         print(print_list)
 

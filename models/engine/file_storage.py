@@ -10,14 +10,14 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        objs = {}
         if cls:
-            objs = self.__objects
-            for key, value in objs.items():
-                if cls == key.split('.')[0]:
+            objs = {}
+            for key, value in self.__objects.items():
+                if cls.__name__ == key.split('.')[0]:
                     objs[key] = value
             return objs
-        return FileStorage.__objects
+        else:
+            return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -62,7 +62,3 @@ class FileStorage:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
             self.save()
-
-    def close(self):
-        """Call reload() to deserialize JSON file to objects"""
-        self.reload()
