@@ -9,6 +9,12 @@ from models.state import State
 app = Flask(__name__)
 
 
+@app.teardown_appcontext
+def teardown(exception):
+    """Terminate in each request the SQLAlchemy Session"""
+    storage.close()
+
+
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """Display HTML inside <BODY> tag"""
@@ -17,12 +23,6 @@ def states_list():
     for value in states.values():
         state_list.append({value.id: value.name})
     return (render_template('7-states_list.html', state_list=state_list))
-
-
-@app.teardown_appcontext
-def teardown(exception):
-    """Terminate in each request the SQLAlchemy Session"""
-    storage.close()
 
 
 if __name__ == "__main__":
