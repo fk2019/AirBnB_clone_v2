@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Start a Flask web app that listens on 0.0.0.0
-   port 5000
+   port 5000 and use `storage` for fetching data from   engine
 """
 from flask import Flask, render_template
 from models import storage
