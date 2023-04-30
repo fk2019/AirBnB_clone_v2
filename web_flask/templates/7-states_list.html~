@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<HTML lang="en">
+  <HEAD>
+    <TITLE>HBNB</TITLE>
+  </HEAD>
+  <BODY>
+    <H1> States </H1>
+    <UL>
+      {% for item in state_list -%}
+      {% for key, value in item.items() -%}
+      <LI>{{ key|e }}: <B>{{ value|e }}</B></LI>
+      {%- endfor %}
+      {% endfor %}
+    </UL>
+  </BODY>
+</HTML>
