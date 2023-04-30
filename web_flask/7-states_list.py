@@ -17,7 +17,7 @@ def teardown(exception):
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
-    """Display HTML inside <BODY> tag"""
+    """Display HTML inside <BODY> tag the list of states in ascending order"""
     states = storage.all(State)
     state_list = []
     for value in states.values():
