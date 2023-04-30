@@ -19,9 +19,10 @@ def teardown(exception):
 def states_list():
     """Display HTML inside <BODY> tag the list of states in ascending order"""
     states = storage.all(State)
-    state_list = []
+    state_list = {}
     for value in states.values():
-        state_list.append({value.id: value.name})
+        state_list.update({value.id: value.name})
+    state_list = dict(sorted(state_list.items(), key=lambda x: x[1]))
     return (render_template('7-states_list.html', state_list=state_list))
 
 
