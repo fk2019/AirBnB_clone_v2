@@ -7,11 +7,12 @@ from sqlalchemy.orm import relationship
 from models.review import Review
 
 place_amenity = Table('place_amenity', Base.metadata,
-                      Column('place.id', String(60), ForeignKey('places.id'),
-                             primary_key=True, nullable=False),
+                      Column('place.id', String(60),
+                             ForeignKey('places.id'),
+                                        primary_key=True, nullable=False),
                       Column('amenity.id', String(60),
                              ForeignKey('amenities.id'), primary_key=True,
-                             nullable=False))
+                                        nullable=False))
 
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
@@ -19,7 +20,8 @@ if getenv("HBNB_TYPE_STORAGE") == "db":
         """ A place to stay """
         if getenv("HBNB_TYPE_STORAGE") == "db":
             __tablename__ = "places"
-            city_id = Column(String(60), ForeignKey('cities.id'),
+            city_id = Column(String(60, collation='latin1_swedish_ci'),
+                             ForeignKey('cities.id'),
                              nullable=False)
             name = Column(String(128), nullable=False)
             user_id = Column(String(60), ForeignKey('users.id'),
