@@ -29,10 +29,14 @@ article {
 	flex-direction: row;
 	position: relative;
 
-	height: 80px;	
+	height: 80px;
 	width: 100%;
 }
-
+.headline h2 {
+    margin-left: -30px;
+    inline-size: 330px;
+    overflow-warp: break-word;
+}
 .price_by_night {
 	display: flex;
 	justify-content: center;

@@ -70,14 +70,14 @@
 			      <STRONG>Owner</STRONG>: {{place.user.first_name }} {{ place.user.last_name }}
 			    </DIV>
                             <DIV class="description"> {{ place.description|safe }}</DIV>
-			    <DIV class="amenities">
+<!--			    <DIV class="amenities">
 			      <H2>Amenities</H2>
 			      {% for amenity in place.amenities|sort(attribute='name') %}
 			      <UL>
 				<LI><P>Pet</P></LI>
 			      </UL>
 			      {% endfor %}
-			    </DIV>
+			    </DIV> -->
 			    <DIV class="reviews">
 			      <H2>{{ place.reviews.__len__() }} Reviews</H2>
 			      {% for review in place.reviews %}
